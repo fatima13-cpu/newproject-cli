@@ -1,6 +1,6 @@
 # CLI Toolkit
 
-A small collection of command-line tools I built to automate repetitive parts of my student/dev workflow — project setup, file organization, and text comparison. Each one is a standalone Python script with its own `.bat` wrapper so it can be run as a normal command from anywhere.
+A small collection of command-line tools I built to automate repetitive parts of my student/dev workflow — project setup and file organization. Each one is a standalone Python script with its own `.bat` wrapper so it can be run as a normal command from anywhere.
 
 ## Tools
 
