@@ -1,55 +1,37 @@
-# newproject-cli
+# CLI Toolkit
 
-A simple command-line tool that automatically generates a standardized project folder structure for C++ and Assembly (COAL) assignments — so nothing gets lost or scattered across random folders.
+A small collection of command-line tools I built to automate repetitive parts of my student/dev workflow — project setup, file organization, and text comparison. Each one is a standalone Python script with its own `.bat` wrapper so it can be run as a normal command from anywhere.
 
-## What it does
+## Tools
 
-Instead of manually creating folders, starter files, and a git repo every time you start a new assignment, just run one command:
+### 1. `newproject` — assignment folder generator
 
-```
-newproject <project-name> --course <course-name>
-```
-
-It automatically:
-- Creates a project folder under `~/CppProjects/`
-- Picks the right template based on the course:
-  - **COAL / Assembly courses** → `asm/` folder + starter `.asm` file
-  - **Everything else (C++, OOP, DSA, etc.)** → `src/` + `include/` folders + starter `main.cpp`
-- Adds a `tests/` folder
-- Generates a `README.md` with build instructions
-- Adds a `.gitignore` for build artifacts
-- Runs `git init` automatically so every project is version-controlled from the start
-
-## Usage
+Creates a standardized project folder (with the right structure for C++ or Assembly/COAL courses) and initializes a git repo, in one command.
 
 ```
 newproject dsa_assignment5 --course DSA
 newproject asm_lab2 --course COAL
-newproject oop_hw4 --course OOP
 ```
 
-## Example output
+### 2. `organize` — file organizer
+
+Sorts a messy folder (like Downloads) into sub-folders by file type (Images, PDFs, Documents, Archives, etc). Supports a safe `--dry-run` preview before actually moving anything.
 
 ```
-✅ Created project 'asm_lab2' at: C:\Users\you\CppProjects\asm_lab2
-   ├── asm/asm_lab2.asm
-   ├── tests/
-   ├── README.md
-   └── .gitignore
-✅ Initialized git repo
+organize C:\Users\you\Downloads --dry-run
+organize C:\Users\you\Downloads
 ```
 
-## Why I built this
+## Installation (Windows)
 
-As a student juggling C++ and Assembly (COAL) coursework, I kept losing track of assignment files scattered across random folders, and repeated the same manual setup (folders, starter files, git init) every single time. This tool automates that entire setup into a single command.
+1. Clone this repo, or download the files, into a permanent folder (e.g. `C:\Tools`)
+2. Add that folder to your system PATH (System Properties → Environment Variables → Path → New → add the folder path)
+3. Open a new terminal — both commands (`newproject`, `organize`) now work from any folder
+
+## Why I built these
+
+As a student juggling multiple courses (C++, COAL/Assembly, and general coursework), I kept running into the same friction points: scattered assignment folders and a messy Downloads folder. Each tool automates one specific piece of that friction instead of trying to do everything in one bloated script.
 
 ## Tech
 
-Built in Python using `argparse` for CLI parsing and `subprocess` for automatic git initialization. Logic is separated from CLI parsing so the core functionality can be tested or reused independently of the terminal interface.
-
-## Installation
-
-1. Clone this repo or download `newproject.py` and `newproject.bat`
-2. Place both files in a permanent folder (e.g. `C:\Tools`)
-3. Add that folder to your system PATH
-4. Run `newproject <name> --course <course>` from anywhere
+Built in Python using only the standard library (`argparse`, `pathlib`, `difflib`, `subprocess`) — no external dependencies required. Each tool separates its core logic from its CLI-parsing layer, so the logic can be tested or reused independently of the terminal.
